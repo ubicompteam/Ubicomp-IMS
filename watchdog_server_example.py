@@ -1,6 +1,6 @@
 from panopticon.base_observer.pipeline import Pipeline
 from panopticon.mobius_observer.mobius import Mobius
-from panopticon.web_observer.dashboard import WebObserver
+from panopticon.web_observer.web import WebObserver
 from panopticon.server_observer.server import ServerObserver
 
 from panopticon.broadcaster import server
