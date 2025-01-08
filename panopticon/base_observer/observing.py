@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from Panopticon.BaseObserver.response import ObserverResponse
+from panopticon.base_observer.response import ObserverResponse
 
 class BaseObserver(ABC):
     @abstractmethod

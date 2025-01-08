@@ -13,3 +13,6 @@ class ObserverResponse:
 
     def __dir__(self):
         return ["status", "data", "message"]
+
+    def __str__(self):
+        return str(self.to_dict())
