@@ -22,24 +22,25 @@ class Server:
         self.observer = observer
         self.interval = interval
 
-    def _send(self, conn, data):
+    def _send(self, conn, data, addr):
         try:
             conn.sendall(data.encode())
-            _log(f"[{datetime.datetime.now()}] Sent: {data}")
+            _log(f"[{datetime.datetime.now()}] {addr} Sent: {data}")
         except Exception as e:
-            _log(f"[{datetime.datetime.now()}] Error: {str(e)}")
+            _log(f"[{datetime.datetime.now()}] {addr} Error: {str(e)}")
+            conn.close()
 
-    def _handle_client(self, conn):
+    def _handle_client(self, conn, addr):
         while True:
             try:
                 data = self.observer.check()
-                self._send(conn, str(data))
+                self._send(conn, str(data), addr)
                 time.sleep(self.interval)
             except Exception as e:
                 _log(f"[{datetime.datetime.now()}] Error: {str(e)}")
                 break
         conn.close()
-        _log(f"[{datetime.datetime.now()}] Connection closed")
+        _log(f"[{datetime.datetime.now()}] {addr}: Connection closed")
 
     def start(self):
         try:
@@ -50,7 +51,7 @@ class Server:
         while True:
             conn, addr = self.server.accept()
             _log(f"[{datetime.datetime.now()}] Connected to {addr[0]}:{addr[1]}")
-            start_new_thread(self._handle_client, (conn,))
+            start_new_thread(self._handle_client, (conn, addr))
         self.server.close()
         _log("Server stopped")
 
