@@ -1,6 +1,6 @@
+import datetime
 import socket
 import time
-import datetime
 from _thread import *
 
 

@@ -1,14 +1,13 @@
-from panopticon.base_observer.pipeline import Pipeline
-from panopticon.mobius_observer.mobius import Mobius
-from panopticon.web_observer.web import WebObserver
-from panopticon.server_observer.server import ServerObserver
-
-from panopticon.broadcaster.client import Client
-
+import os
 from datetime import timedelta
 
-import os
 from dotenv import load_dotenv
+
+from base_observer.pipeline import Pipeline
+from broadcaster.client import Client
+from mobius_observer.mobius import Mobius
+from server_observer.server import ServerObserver
+from web_observer.web import WebObserver
 
 load_dotenv()
 

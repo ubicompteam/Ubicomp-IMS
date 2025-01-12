@@ -1,9 +1,9 @@
-import http.client
 import datetime
+import http.client
 import json
 
-from panopticon.base_observer.observing import BaseObserver
-from panopticon.base_observer.response import ObserverResponse
+from base_observer.observing import BaseObserver
+from base_observer.response import ObserverResponse
 
 
 class Mobius:

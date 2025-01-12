@@ -1,6 +1,7 @@
+import datetime
 import socket
 import time
-import datetime
+
 
 def _log(message):
     print(message)

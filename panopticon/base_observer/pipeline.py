@@ -1,7 +1,8 @@
 from abc import ABC
 
-from panopticon.base_observer.observing import BaseObserver
-from panopticon.base_observer.response import ObserverResponse
+from base_observer.observing import BaseObserver
+from base_observer.response import ObserverResponse
+
 
 class Pipeline(BaseObserver, ABC):
     def __init__(self, observers: tuple | dict | list):

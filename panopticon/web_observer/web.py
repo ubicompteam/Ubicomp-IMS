@@ -1,7 +1,8 @@
 import http.client
 
-from panopticon.base_observer.observing import BaseObserver
-from panopticon.base_observer.response import ObserverResponse
+from base_observer.observing import BaseObserver
+from base_observer.response import ObserverResponse
+
 
 class WebObserver(BaseObserver):
     def __init__(self, hostname: str, port: int, headers=None, timeout: int = 5):

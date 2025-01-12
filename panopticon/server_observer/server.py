@@ -1,6 +1,6 @@
-from panopticon.base_observer.observing import BaseObserver
-from panopticon.base_observer.response import ObserverResponse
-from panopticon.utils.ping import Ping
+from base_observer.observing import BaseObserver
+from base_observer.response import ObserverResponse
+from utils.ping import Ping
 
 class ServerObserver(BaseObserver):
     def __init__(self, ip: str, timeout: int = 1):
