@@ -14,8 +14,21 @@ class Client:
         self.observer = None
         self.host = host
         self.port = port
-        self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.connect()
+        
+        # self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        # self.connect()
+        # for i in range(10):
+        while True:
+            try:
+                self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                self.connect()
+                break
+            except Exception as e:
+                _log(f"[{datetime.datetime.now()}] Error: {str(e)}")
+                time.sleep(10)
+
+        # if i == 9:
+        #     raise Exception("Failed to connect to the server")
 
     def set_observer(self, observer, interval = 10):
         self.observer = observer
@@ -24,7 +37,7 @@ class Client:
     def check(self):
         return self.observer.check()
 
-    def start(self, retry_forever = True):
+    def start(self, retry_forever = False):
         while True:
             try:
                 data = self.check()
@@ -33,11 +46,12 @@ class Client:
             except Exception as e:
                 _log(f"[{datetime.datetime.now()}] Error: {str(e)}")
                 if not retry_forever:
-                    break
-                self.client.close()
+                    self.client.close()
+                    return
+                # self.client.close()
                 self.connect()
             time.sleep(self.interval)
-        self.client.close()
+        # self.client.close()
 
     def connect(self, retry_forever = True):
         while True:

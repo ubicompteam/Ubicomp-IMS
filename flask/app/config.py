@@ -1,0 +1,3 @@
+import os
+
+SOCKETIO_CORS_ALLOWED_ORIGINS = os.getenv('SOCKETIO_CORS_ALLOWED_ORIGINS', '*')  # CORS 설정

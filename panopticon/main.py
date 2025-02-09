@@ -26,15 +26,18 @@ def main():
     ubicomp = Pipeline({
         'mobius': mobiusPipeline,
         'dashboard': WebObserver(os.getenv('DASHBOARD_SERVER_ADDRESS'), int(os.getenv('DASHBOARD_SERVER_PORT'))),
-        'server': ServerObserver(os.getenv('MOBIUS_SERVER_ADDRESS'))
+        'server': ServerObserver(os.getenv('MOBIUS_SERVER_ADDRESS')),
+        'test': WebObserver('localhost', 3000)
     })
 
 
     # print(ubicomp.check())
 
-    c = Client(os.getenv('FLASK_SERVER_ADDRESS'), int(os.getenv('FLASK_SERVER_PORT')))
-    c.set_observer(ubicomp, 10)
-    c.start()
+    while True:
+        print(f'Connecting to {os.getenv("FLASK_SERVER_ADDRESS")}:{os.getenv("FLASK_SERVER_PORT")}')
+        c = Client(os.getenv('FLASK_SERVER_ADDRESS'), int(os.getenv('FLASK_SERVER_PORT')))
+        c.set_observer(ubicomp, 10)
+        c.start()
 
 if __name__ == '__main__':
     main()

@@ -13,7 +13,7 @@ class ServerObserver(BaseObserver):
             ret = ping.send_echo_request()
 
             if ret:
-                ret = ObserverResponse(status=True, data=ret)
+                ret = ObserverResponse(status=True, data=True)
             else:
                 ret = ObserverResponse(status=False, message="No response")
         except Exception as e:

@@ -1,10 +1,3 @@
-export type Status = {
-  serverStatus: boolean
-  mobiusStatus: boolean
-  dataStatus: boolean
-  dashboardStatus: boolean
-}
-
 export type ErrorLog = {
   id: number
   timestamp: string
@@ -19,8 +12,15 @@ export type Incident = {
   status: string
   service: string
   detail: string
-  occurredAt: string
-  restoredAt: string
+  occurred_at: string
+  restored_at: string
+}
+
+export enum Status {
+  OCCURRED = "OCCURRED",
+  INVESTIG = "INVESTIG",
+  RESTORED = "RESTORED",
+  RESOLVING = "RESOLVING",
 }
 
 export function timestampConverter(timestamp: string) : string {

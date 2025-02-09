@@ -6,9 +6,9 @@ class ObserverResponse:
 
     def to_dict(self):
         return {
-            "status": self.status,
-            "data": self.data,
-            "message": self.message,
+            "status": str(self.status),
+            "data": str(self.data),
+            "message": str(self.message),
         }
 
     def __dir__(self):

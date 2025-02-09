@@ -31,7 +31,7 @@ class PingObserver(BaseObserver):
             conn = http.client.HTTPConnection(self.hostname, self.port, timeout=self.timeout)
             conn.request("GET", "/", headers=self.headers)
             response = conn.getresponse()
-            ret = ObserverResponse(status=True, data=response.read())
+            ret = ObserverResponse(status=True, data=True)
         except Exception as e:
             ret = ObserverResponse(status=False, message=str(e))
         return ret
@@ -58,7 +58,7 @@ class IntervalObserver(BaseObserver):
             ret = json.loads(response.read())
             ret = ret['m2m:cin']['con'].split(',')[0]
             ret = datetime.datetime.strptime(ret, '%Y%m%d%H%M%S')
-            ret = ObserverResponse(status=datetime.datetime.now() - ret < self.interval, data=ret)
+            ret = ObserverResponse(status=datetime.datetime.now() - ret < self.interval, data=ret.strftime('%Y-%m-%d %H:%M:%S'))
         except Exception as e:
             ret = ObserverResponse(status=False, message=str(e))
         return ret
